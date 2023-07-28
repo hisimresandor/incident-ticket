@@ -14,7 +14,7 @@
             </a>
         </div>
         <div class="col-6">
-            <a href="#" class="link-underline link-underline-opacity-0">
+            <a href="{{ route('login') }}" class="link-underline link-underline-opacity-0">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title text-center">Admin belépés</h5>

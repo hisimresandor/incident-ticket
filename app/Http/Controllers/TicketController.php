@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Sender;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class TicketController extends Controller
@@ -13,9 +14,21 @@ class TicketController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if($request->sender_id) {
+            if ($request->orderBy == "due_date") {
+                return view('tickets.index', ['tickets' => DB::table('tickets')->orderBy('tickets.due_date', 'asc')->join('senders', 'tickets.sender_id', '=', 'senders.id')->where('sender_id', '=', $request->sender_id)->paginate(5)]);
+            } else {
+                return view('tickets.index', ['tickets' => DB::table('tickets')->orderBy('tickets.created_at', 'asc')->join('senders', 'tickets.sender_id', '=', 'senders.id')->where('sender_id', '=', $request->sender_id)->paginate(5)]);
+            }
+        } else {
+            if ($request->orderBy == "due_date") {
+                return view('tickets.index', ['tickets' => DB::table('tickets')->orderBy('tickets.due_date', 'asc')->join('senders', 'tickets.sender_id', '=', 'senders.id')->paginate(5)]);
+            } else {
+                return view('tickets.index', ['tickets' => DB::table('tickets')->orderBy('tickets.created_at', 'asc')->join('senders', 'tickets.sender_id', '=', 'senders.id')->paginate(5)]);
+            }
+        }
     }
 
     /**
