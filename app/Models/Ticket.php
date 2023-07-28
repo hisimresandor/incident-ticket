@@ -18,6 +18,7 @@ class Ticket extends Model
         'sender_id',
         'subject',
         'content',
+        'due_date'
     ];
 
     use HasFactory;

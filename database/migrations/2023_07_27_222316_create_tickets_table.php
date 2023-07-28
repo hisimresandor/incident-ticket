@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('sender_id');
             $table->string('subject');
             $table->string('content');
+            $table->dateTime('due_date');
             $table->timestamps();
         });
     }

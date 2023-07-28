@@ -20,6 +20,7 @@ class TicketFactory extends Factory
             'sender_id' => $this->faker->numberBetween(1, 4),
             'subject' => $this->faker->text(),
             'content' => $this->faker->realText(),
+            'due_date' => $this->faker->dateTimeBetween('now', '+16 hours')
         ];
     }
 }
